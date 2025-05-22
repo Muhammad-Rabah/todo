@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Animated To-Do List</title>
+  <link rel="stylesheet" href="style.css"/>
+  <!-- Font Awesome for social/footer icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><span class="logo">🗒️</span> To-Do List</h1>
+      <button id="theme-toggle" aria-label="Toggle Theme">
+        <span class="toggle-icon">
+          <i class="fa-solid fa-moon"></i>
+        </span>
+      </button>
+    </header>
+    
+    <form id="todo-form" autocomplete="off">
+      <input id="todo-input" maxlength="130" placeholder="Add a new task..."/>
+      <button type="submit" title="Add task">+</button>
+    </form>
+    <div class="filters">
+      <button data-filter="all" class="active">All</button>
+      <button data-filter="active">Active</button>
+      <button data-filter="completed">Completed</button>
+    </div>
+    <ul id="todo-list"></ul>
+    <div class="todo-footer">
+      <span id="counter">0 tasks</span>
+      <button id="clear-completed" title="Clear all completed tasks">
+        <i class="fa fa-broom"></i> Clear Completed
+      </button>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-social">
+      <a href="https://github.com/Muhammad-Rabah" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+      <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+    <p class="copyright">All Rights Reserved © Muhammad Rabah, 2025</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

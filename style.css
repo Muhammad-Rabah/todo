@@ -1,0 +1,429 @@
+:root {
+  --transition: 0.45s cubic-bezier(.68,-0.55,.27,1.55);
+  --fast: 0.22s cubic-bezier(.68,-0.55,.27,1.55);
+  --bg: #181a1b;
+  --card: #23272e;
+  --text: #f6f7f9;
+  --accent: #63b3ed;
+  --accent2: #4299e1;
+  --done: #38a169;
+  --border: #2d3748;
+  --input: #252a34;
+  --footer: #141619;
+  --shadow: 0 6px 30px rgba(0,0,0,.35);
+  --slide-in: slideIn .52s cubic-bezier(.68,-0.55,.27,1.55);
+  --slide-out: slideOut .41s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+}
+[data-theme="light"] {
+  --bg: #f6f7f9;
+  --card: #fff;
+  --text: #181a1b;
+  --accent: #3274d6;
+  --accent2: #4299e1;
+  --done: #229a52;
+  --border: #e3e7ee;
+  --input: #f0f0f4;
+  --footer: #f4f5f8;
+  --shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  transition: background var(--transition);
+}
+.container {
+  background: var(--card);
+  padding: 32px 24px 24px 24px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  min-width: 340px;
+  width: 100%;
+  max-width: 400px;
+  margin: 48px auto 24px auto;
+  transition:
+    background var(--transition),
+    box-shadow var(--transition);
+  animation: fadeInContainer .9s;
+}
+@keyframes fadeInContainer {
+  from { opacity: 0; transform: translateY(30px) scale(.97);}
+  to { opacity: 1; transform: none;}
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.logo {
+  font-size: 1.4em;
+  vertical-align: middle;
+  animation: logoPop .85s;
+}
+@keyframes logoPop {
+  0%{ transform: scale(.8);}
+  50%{ transform: scale(1.22);}
+  100%{transform: scale(1);}
+}
+h1 {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  transition: color var(--transition);
+}
+#theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.3em;
+  color: var(--accent);
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  transition: color var(--transition), background var(--fast), box-shadow .22s;
+  padding: 7px;
+  box-shadow: 0 2px 6px #0003;
+  margin-left: 10px;
+}
+#theme-toggle:hover {
+  background: var(--accent2);
+  color: #fff;
+  transform: scale(1.12) rotate(-10deg);
+}
+.toggle-icon {
+  display: inline-block;
+  transition: transform var(--fast), color var(--fast);
+}
+.toggle-icon i {
+  transition: color var(--fast), text-shadow var(--fast), transform var(--fast);
+  font-size: 1.2em;
+}
+[data-theme="dark"] #theme-toggle .fa-moon {
+  animation: rotateOut .4s;
+}
+[data-theme="light"] #theme-toggle .fa-sun {
+  animation: rotateIn .4s;
+}
+@keyframes rotateIn {
+  0% {transform: rotate(-160deg) scale(.7);}
+  100% {transform: none;}
+}
+@keyframes rotateOut {
+  0% {transform: none;}
+  100% {transform: rotate(180deg) scale(.7);}
+}
+#todo-form {
+  display: flex;
+  margin-bottom: 14px;
+  gap: 8px;
+  animation: fadeIn .7s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(18px);}
+  to { opacity: 1; transform: none;}
+}
+#todo-input {
+  flex: 1;
+  border: none;
+  background: var(--input);
+  color: var(--text);
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  outline: none;
+  transition: background var(--transition), color var(--transition);
+}
+#todo-input:focus {
+  background: #32394016;
+  box-shadow: 0 0 0 2px var(--accent2);
+}
+#todo-form button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: background .2s, transform .1s, box-shadow .2s;
+  box-shadow: 0 2px 6px #0002;
+  animation: popBtn .3s;
+}
+@keyframes popBtn {
+  0%{transform: scale(.9);}
+  60%{transform: scale(1.08);}
+  100%{transform: none;}
+}
+#todo-form button:hover {
+  background: var(--accent2);
+  transform: scale(1.07) rotate(-7deg);
+  box-shadow: 0 4px 16px #0003;
+}
+.filters {
+  display: flex;
+  gap: 7px;
+  margin: 0 0 10px 0;
+  justify-content: center;
+  animation: fadeIn .8s;
+}
+.filters button {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background var(--transition), color var(--transition), transform .17s;
+}
+.filters button.active,
+.filters button:focus {
+  background: var(--accent);
+  color: #fff;
+  outline: none;
+  transform: scale(1.08);
+}
+.filters button:hover:not(.active) {
+  background: #fff3;
+  color: var(--accent2);
+  transform: scale(1.06);
+}
+#todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-height: 40px;
+  transition: min-height var(--transition);
+}
+.todo-item {
+  display: flex;
+  align-items: center;
+  background: var(--input);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    box-shadow .15s, 
+    opacity .22s;
+  box-shadow: 0 2px 10px #0001;
+  position: relative;
+  cursor: grab;
+  user-select: none;
+  animation: var(--slide-in);
+}
+.todo-item.removing {
+  animation: var(--slide-out);
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(28px) scale(.97);}
+  to { opacity: 1; transform: none;}
+}
+@keyframes slideOut {
+  to { opacity: 0; transform: translateY(-20px) scale(.95);}
+}
+.todo-item.dragging {
+  background: var(--accent);
+  color: #fff;
+  opacity: 0.85;
+  box-shadow: 0 6px 30px #0008;
+  z-index: 10;
+  transform: scale(1.03) rotate(-2deg);
+  transition: none;
+}
+.todo-item.done {
+  background: #29332f11;
+  opacity: 0.7;
+  text-decoration: line-through;
+  color: var(--done);
+  transition: background var(--transition), color var(--transition), opacity .32s;
+}
+.todo-text {
+  flex: 1;
+  font-size: 1.07rem;
+  word-break: break-word;
+  padding: 0 6px;
+  min-width: 0;
+  outline: none;
+  transition: color var(--transition), background var(--fast);
+  cursor: pointer;
+}
+.todo-text[contenteditable="true"] {
+  background: #0002;
+  border-radius: 4px;
+  outline: 2px solid var(--accent);
+  color: var(--text);
+  animation: editFlash .13s;
+}
+@keyframes editFlash {
+  from { background: #fffbcc; }
+  to { background: #0002; }
+}
+.todo-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 2px;
+}
+.todo-actions button {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 1.15rem;
+  transition: color .2s, background .15s, transform .13s;
+  border-radius: 3px;
+  padding: 2px 4px;
+  outline: none;
+}
+.todo-actions button:focus { background: #e5f2ff; }
+.todo-actions button:hover { color: #e53e3e; background: #fff2; transform: scale(1.12);}
+.todo-actions .edit:hover { color: #e6b800;}
+/* Animated Checkbox */
+.animated-checkbox {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2.2px solid var(--accent);
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(120deg,#2228 30%,#fff1 100%);
+  box-shadow: 0 2px 6px #0001;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.animated-checkbox:active {
+  box-shadow: 0 4px 22px #2224;
+  transform: scale(1.08);
+}
+.animated-checkbox:checked {
+  border-color: var(--done);
+  background: var(--done);
+  animation: checkboxPop .23s;
+}
+@keyframes checkboxPop {
+  0% { transform: scale(.8);}
+  60% { transform: scale(1.22);}
+  100% { transform: scale(1);}
+}
+.animated-checkbox::after {
+  content: '';
+  position: absolute;
+  left: 6px; top: 2.5px;
+  width: 7px; height: 12px;
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  border-radius: 2px;
+  transform: scale(0) rotate(20deg);
+  opacity: 0;
+  transition: all .25s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.animated-checkbox:checked::after {
+  transform: scale(1.05) rotate(20deg);
+  opacity: 1;
+}
+.animated-checkbox:not(:checked):hover {
+  border-color: var(--accent2);
+  background: #fff3;
+}
+.todo-footer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn .7s;
+}
+#counter {
+  font-size: 0.97em;
+  color: var(--accent);
+  transition: color var(--transition);
+}
+#clear-completed {
+  border: none;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color .2s, background .1s, transform .16s;
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+#clear-completed:hover {
+  color: #e53e3e;
+  background: #fff2;
+  transform: scale(1.1) rotate(-4deg);
+}
+footer {
+  background: var(--footer);
+  border-radius: 16px 16px 0 0;
+  margin-top: auto;
+  width: 100%;
+  padding: 23px 0 8px 0;
+  text-align: center;
+  box-shadow: 0 -4px 14px #0002;
+  transition: background var(--transition);
+  animation: fadeInFooter .8s;
+}
+@keyframes fadeInFooter {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: none;}
+}
+.footer-social {
+  margin-bottom: 6px;
+}
+.footer-social a {
+  color: var(--accent);
+  margin: 0 8px;
+  font-size: 1.35em;
+  transition: color .2s, transform .15s;
+  display: inline-block;
+  transform: scale(.92);
+}
+.footer-social a:hover {
+  color: #e53e3e;
+  transform: scale(1.15) rotate(-8deg);
+}
+.copyright {
+  color: var(--text);
+  font-size: 0.95em;
+  margin-top: 0;
+  opacity: 0.8;
+  animation: fadeIn .6s;
+}
+::-webkit-scrollbar { width: 8px;}
+::-webkit-scrollbar-thumb { background: #2223; border-radius: 8px;}
+@media (max-width: 500px) {
+  .container {
+    min-width: unset;
+    width: 97vw;
+    padding: 18px 4vw 14px 4vw;
+  }
+  footer { border-radius: 0;}
+}
